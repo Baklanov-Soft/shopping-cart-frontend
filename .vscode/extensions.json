@@ -5,6 +5,7 @@
     "github.vscode-pull-request-github",
     "visualstudioexptteam.vscodeintellicode",
     "esbenp.prettier-vscode",
-    "arcanis.vscode-zipfs"
+    "arcanis.vscode-zipfs",
+    "eamodio.gitlens"
   ]
 }
