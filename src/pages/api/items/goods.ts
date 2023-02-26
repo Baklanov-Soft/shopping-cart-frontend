@@ -1,4 +1,4 @@
-import { Guitar } from '@/pages/catalog/types';
+import { Guitar } from '@pages/types';
 
 const goods: Guitar[] = [
   {

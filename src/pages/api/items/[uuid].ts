@@ -1,4 +1,4 @@
-import { Guitar } from '@/pages/catalog/types';
+import { Guitar } from '@pages/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import goods from './goods';
 
