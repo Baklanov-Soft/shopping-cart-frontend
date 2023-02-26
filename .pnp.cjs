@@ -48,6 +48,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.8.4"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:18.2.0"],\
+            ["react-icons", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:4.7.1"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"]\
           ],\
           "linkType": "SOFT"\
@@ -3993,6 +3994,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-icons", [\
+        ["npm:4.7.1", {\
+          "packageLocation": "./.yarn/cache/react-icons-npm-4.7.1-27c284b383-ed3cbdc5fc.zip/node_modules/react-icons/",\
+          "packageDependencies": [\
+            ["react-icons", "npm:4.7.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:4.7.1", {\
+          "packageLocation": "./.yarn/__virtual__/react-icons-virtual-f130911ab5/0/cache/react-icons-npm-4.7.1-27c284b383-ed3cbdc5fc.zip/node_modules/react-icons/",\
+          "packageDependencies": [\
+            ["react-icons", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:4.7.1"],\
+            ["@types/react", "npm:18.0.28"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-is", [\
         ["npm:16.13.1", {\
           "packageLocation": "./.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-f7a19ac349.zip/node_modules/react-is/",\
@@ -4245,6 +4268,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.8.4"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:18.2.0"],\
+            ["react-icons", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:4.7.1"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"]\
           ],\
           "linkType": "SOFT"\
