@@ -8,14 +8,20 @@ import {
   ColorScheme,
   ColorSchemeProvider,
   Container,
+  Divider,
+  Drawer,
+  Flex,
   Group,
   Header,
   MantineProvider,
   MediaQuery,
+  ScrollArea,
+  Text,
   TextInput,
-  ThemeIcon
+  ThemeIcon,
+  UnstyledButton
 } from '@mantine/core';
-import { useLocalStorage } from '@mantine/hooks';
+import { useDisclosure, useLocalStorage } from '@mantine/hooks';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -44,6 +50,8 @@ export default function App({ Component, pageProps }: AppProps) {
   });
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
+  const [opened, { toggle, close }] = useDisclosure(false);
 
   return (
     <>
@@ -99,7 +107,7 @@ export default function App({ Component, pageProps }: AppProps) {
               </HiddenMobile>
 
               <HiddenDesktop>
-                <Burger opened={false} />
+                <Burger opened={opened} onClick={toggle} />
               </HiddenDesktop>
             </Group>
           </Header>
@@ -107,9 +115,74 @@ export default function App({ Component, pageProps }: AppProps) {
           <Container size="lg" px={8}>
             <Component {...pageProps} />
           </Container>
+
+          <Drawer
+            opened={opened}
+            onClose={close}
+            title={
+              <Flex align="center" gap="0.5rem">
+                <Text component="span">Navigation</Text>
+                <ColorSchemeToggle />
+              </Flex>
+            }
+            padding="md"
+            position="right"
+            overlayOpacity={0.55}
+            overlayBlur={3}
+          >
+            <ScrollArea mx="-md" sx={{ height: 'calc(100vh - 60px)' }}>
+              <Divider my="sm" />
+              <DrawerButton title="Cart" icon={<BsCart3 />} pathname="cart" />
+              <DrawerButton
+                title="Orders"
+                icon={<BsBoxSeam />}
+                pathname="orders"
+              />
+            </ScrollArea>
+          </Drawer>
         </MantineProvider>
       </ColorSchemeProvider>
     </>
   );
 }
+
+type DrawerButtonProps = {
+  title: React.ReactNode;
+  icon: React.ReactNode;
+  pathname: string;
+};
+
+function DrawerButton({ title, icon, pathname }: DrawerButtonProps) {
+  return (
+    <UnstyledButton
+      component={Link}
+      href={{ pathname }}
+      px="sm"
+      py="xs"
+      sx={(theme) => ({
+        display: 'block',
+        width: '100%',
+
+        ...theme.fn.hover({
+          backgroundColor:
+            theme.colorScheme === 'dark'
+              ? theme.colors.dark[6]
+              : theme.colors.gray[1]
+        }),
+
+        '&:active': theme.activeStyles
+      })}
+    >
+      <Group noWrap align="flex-start" sx={{ alignItems: 'center' }}>
+        <ThemeIcon variant="outline" size="lg" radius="md">
+          {icon}
+        </ThemeIcon>
+        <Text size="sm" component="span">
+          {title}
+        </Text>
+      </Group>
+    </UnstyledButton>
+  );
+}
+//todo: add login button to drawer
 //todo: decompose header to components
