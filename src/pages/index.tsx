@@ -1,10 +1,12 @@
-import { Anchor, Button, Card, Flex, Text, Title } from '@mantine/core';
+import { Anchor, Button, Card, SimpleGrid, Text, Title } from '@mantine/core';
 import Head from 'next/head';
 import Link from 'next/link';
 import { fetchItems } from './api';
 import { GuitarItem } from './types';
 
-type CatalogPageProps = { items: GuitarItem[] };
+type CatalogPageProps = {
+  items?: GuitarItem[];
+};
 
 function CatalogPage({ items }: CatalogPageProps) {
   return (
@@ -14,9 +16,15 @@ function CatalogPage({ items }: CatalogPageProps) {
       </Head>
       <Title>Catalog page</Title>
       {items && (
-        <Flex wrap="wrap" gap="md">
+        <SimpleGrid
+          breakpoints={[
+            { minWidth: 'xs', cols: 2 },
+            { minWidth: 'sm', cols: 3 },
+            { minWidth: 'md', cols: 4 }
+          ]}
+        >
           {items.map(renderGuitarItem)}
-        </Flex>
+        </SimpleGrid>
       )}
     </>
   );
