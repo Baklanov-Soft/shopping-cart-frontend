@@ -6,7 +6,7 @@ function ColorSchemeToggle() {
 
   return (
     <ActionIcon onClick={() => toggleColorScheme()}>
-      <ThemeIcon variant="light">
+      <ThemeIcon variant="outline">
         {colorScheme === 'dark' ? <BsSun /> : <BsMoon />}
       </ThemeIcon>
     </ActionIcon>
