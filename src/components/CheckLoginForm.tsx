@@ -12,7 +12,7 @@ type CheckLoginFormValues = {
   username: string;
 };
 
-export function CheckLoginForm({ onSuccess }: CheckLoginFormProps) {
+function CheckLoginForm({ onSuccess }: CheckLoginFormProps) {
   const { state, dispatch } = useLoginContext();
   const form = useForm<CheckLoginFormValues>({
     initialValues: { username: state.username },
@@ -47,6 +47,8 @@ export function CheckLoginForm({ onSuccess }: CheckLoginFormProps) {
     </form>
   );
 }
+
+export default CheckLoginForm;
 
 function canNotBeEmpty(value: string) {
   return !value && 'Can not be empty';
