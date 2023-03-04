@@ -37,10 +37,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mantine/form", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:6.0.0"],\
             ["@mantine/hooks", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:5.10.4"],\
             ["@mantine/next", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:5.10.4"],\
+            ["@types/cookie", "npm:0.5.1"],\
             ["@types/eslint", "npm:8.21.1"],\
             ["@types/node", "npm:18.14.1"],\
             ["@types/react", "npm:18.0.28"],\
             ["@types/react-dom", "npm:18.0.11"],\
+            ["cookie", "npm:0.5.0"],\
             ["eslint", "npm:8.34.0"],\
             ["eslint-config-next", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:13.2.1"],\
             ["eslint-config-prettier", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:8.6.0"],\
@@ -1087,6 +1089,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/cookie", [\
+        ["npm:0.5.1", {\
+          "packageLocation": "./.yarn/cache/@types-cookie-npm-0.5.1-4b655a0ac0-9a8d60fc84.zip/node_modules/@types/cookie/",\
+          "packageDependencies": [\
+            ["@types/cookie", "npm:0.5.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/eslint", [\
         ["npm:8.21.1", {\
           "packageLocation": "./.yarn/cache/@types-eslint-npm-8.21.1-1c50986f9d-584068441e.zip/node_modules/@types/eslint/",\
@@ -1653,6 +1664,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/convert-source-map-npm-1.9.0-e294555f4b-dc55a1f28d.zip/node_modules/convert-source-map/",\
           "packageDependencies": [\
             ["convert-source-map", "npm:1.9.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["cookie", [\
+        ["npm:0.5.0", {\
+          "packageLocation": "./.yarn/cache/cookie-npm-0.5.0-e2d58a161a-1f4bd2ca57.zip/node_modules/cookie/",\
+          "packageDependencies": [\
+            ["cookie", "npm:0.5.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4301,10 +4321,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mantine/form", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:6.0.0"],\
             ["@mantine/hooks", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:5.10.4"],\
             ["@mantine/next", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:5.10.4"],\
+            ["@types/cookie", "npm:0.5.1"],\
             ["@types/eslint", "npm:8.21.1"],\
             ["@types/node", "npm:18.14.1"],\
             ["@types/react", "npm:18.0.28"],\
             ["@types/react-dom", "npm:18.0.11"],\
+            ["cookie", "npm:0.5.0"],\
             ["eslint", "npm:8.34.0"],\
             ["eslint-config-next", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:13.2.1"],\
             ["eslint-config-prettier", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:8.6.0"],\
