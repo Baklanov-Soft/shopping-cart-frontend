@@ -34,6 +34,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/server", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:11.10.0"],\
             ["@emotion/utils", "npm:1.2.0"],\
             ["@mantine/core", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:5.10.4"],\
+            ["@mantine/form", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:6.0.0"],\
             ["@mantine/hooks", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:5.10.4"],\
             ["@mantine/next", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:5.10.4"],\
             ["@types/eslint", "npm:8.21.1"],\
@@ -44,10 +45,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-next", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:13.2.1"],\
             ["eslint-config-prettier", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:8.6.0"],\
             ["eslint-plugin-prettier", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:4.2.1"],\
+            ["js-base64", "npm:3.7.5"],\
             ["next", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:13.2.1"],\
             ["prettier", "npm:2.8.4"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:18.2.0"],\
+            ["react-icons", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:4.8.0"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"]\
           ],\
           "linkType": "SOFT"\
@@ -458,6 +461,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/react-dom",\
             "@types/react",\
             "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@mantine/form", [\
+        ["npm:6.0.0", {\
+          "packageLocation": "./.yarn/cache/@mantine-form-npm-6.0.0-bbe39ea085-a992fb860d.zip/node_modules/@mantine/form/",\
+          "packageDependencies": [\
+            ["@mantine/form", "npm:6.0.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:6.0.0", {\
+          "packageLocation": "./.yarn/__virtual__/@mantine-form-virtual-3da730d602/0/cache/@mantine-form-npm-6.0.0-bbe39ea085-a992fb860d.zip/node_modules/@mantine/form/",\
+          "packageDependencies": [\
+            ["@mantine/form", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:6.0.0"],\
+            ["@types/react", "npm:18.0.28"],\
+            ["fast-deep-equal", "npm:3.1.3"],\
+            ["klona", "npm:2.0.6"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
             "react"\
           ],\
           "linkType": "HARD"\
@@ -3334,6 +3361,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["js-base64", [\
+        ["npm:3.7.5", {\
+          "packageLocation": "./.yarn/cache/js-base64-npm-3.7.5-81a9ad2ffd-67a78c8b1c.zip/node_modules/js-base64/",\
+          "packageDependencies": [\
+            ["js-base64", "npm:3.7.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["js-sdsl", [\
         ["npm:4.3.0", {\
           "packageLocation": "./.yarn/cache/js-sdsl-npm-4.3.0-4f51b3ddb2-ce908257cf.zip/node_modules/js-sdsl/",\
@@ -3406,6 +3442,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jsx-ast-utils", "npm:3.3.3"],\
             ["array-includes", "npm:3.1.6"],\
             ["object.assign", "npm:4.1.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["klona", [\
+        ["npm:2.0.6", {\
+          "packageLocation": "./.yarn/cache/klona-npm-2.0.6-bc83268fb1-ac9ee3732e.zip/node_modules/klona/",\
+          "packageDependencies": [\
+            ["klona", "npm:2.0.6"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3993,6 +4038,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-icons", [\
+        ["npm:4.8.0", {\
+          "packageLocation": "./.yarn/cache/react-icons-npm-4.8.0-aa5423cd6c-4dbba7ad98.zip/node_modules/react-icons/",\
+          "packageDependencies": [\
+            ["react-icons", "npm:4.8.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:4.8.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-icons-virtual-14394a925e/0/cache/react-icons-npm-4.8.0-aa5423cd6c-4dbba7ad98.zip/node_modules/react-icons/",\
+          "packageDependencies": [\
+            ["react-icons", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:4.8.0"],\
+            ["@types/react", "npm:18.0.28"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-is", [\
         ["npm:16.13.1", {\
           "packageLocation": "./.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-f7a19ac349.zip/node_modules/react-is/",\
@@ -4231,6 +4298,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/server", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:11.10.0"],\
             ["@emotion/utils", "npm:1.2.0"],\
             ["@mantine/core", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:5.10.4"],\
+            ["@mantine/form", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:6.0.0"],\
             ["@mantine/hooks", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:5.10.4"],\
             ["@mantine/next", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:5.10.4"],\
             ["@types/eslint", "npm:8.21.1"],\
@@ -4241,10 +4309,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-next", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:13.2.1"],\
             ["eslint-config-prettier", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:8.6.0"],\
             ["eslint-plugin-prettier", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:4.2.1"],\
+            ["js-base64", "npm:3.7.5"],\
             ["next", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:13.2.1"],\
             ["prettier", "npm:2.8.4"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:18.2.0"],\
+            ["react-icons", "virtual:e16581ace64730383823b2a63e455efe59e65fe1e7fb70d7b1982c972057845f2cc022750ce89ad8456efd1b84d67b30cf6666066a92c0a823ce67ecb6e8dddc#npm:4.8.0"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"]\
           ],\
           "linkType": "SOFT"\
