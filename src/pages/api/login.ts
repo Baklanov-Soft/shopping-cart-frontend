@@ -7,8 +7,7 @@ interface LoginUser {
 }
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const loginUser = req.body as LoginUser;
-  const token = await login(loginUser);
+  const token = await login(req.body);
 
   res
     .setHeader(
