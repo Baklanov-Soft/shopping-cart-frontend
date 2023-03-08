@@ -9,7 +9,7 @@ import {
   ColorSchemeProvider,
   Container,
   Group,
-  Header,
+  Header as MantineHeader,
   MantineProvider,
   MediaQuery,
   TextInput,
@@ -50,7 +50,6 @@ function App({
   colorScheme: cs
 }: AppProps & AppOwnProps) {
   const [colorScheme, toggleColorScheme] = useColorSchemeToggle(cs);
-  const router = useRouter();
 
   return (
     <>
@@ -68,67 +67,7 @@ function App({
           withNormalizeCSS
           theme={{ colorScheme }}
         >
-          <Header height={60} px="1rem">
-            <Group position="apart" sx={{ height: '100%' }} spacing={0}>
-              <Logo />
-
-              <HiddenMobile>
-                <Box
-                  component="form"
-                  method="get"
-                  action="/"
-                  sx={{ flexGrow: 1, display: 'flex', columnGap: '1rem' }}
-                  px="1rem"
-                >
-                  <TextInput name="q" sx={{ width: '100%' }} />
-                  <Button type="submit">Search</Button>
-                </Box>
-              </HiddenMobile>
-
-              <HiddenMobile>
-                <Group>
-                  <ColorSchemeToggle />
-
-                  <ActionIcon component={Link} href={{ pathname: 'cart' }}>
-                    <ThemeIcon>
-                      <BsCart3 />
-                    </ThemeIcon>
-                  </ActionIcon>
-
-                  <ActionIcon component={Link} href={{ pathname: 'orders' }}>
-                    <ThemeIcon>
-                      <BsBoxSeam />
-                    </ThemeIcon>
-                  </ActionIcon>
-
-                  <Button
-                    component={Link}
-                    href={{
-                      pathname: 'login',
-                      query: { callback: router.asPath }
-                    }}
-                  >
-                    Log in
-                  </Button>
-                  <Button
-                    variant="outline"
-                    component={Link}
-                    href={{
-                      pathname: 'signup',
-                      query: { callback: router.asPath }
-                    }}
-                  >
-                    Sign up
-                  </Button>
-                </Group>
-              </HiddenMobile>
-
-              <HiddenDesktop>
-                <NavigationDrawer />
-              </HiddenDesktop>
-            </Group>
-          </Header>
-
+          <Header />
           <Container size="lg" px={8}>
             <Component {...pageProps} />
           </Container>
@@ -137,8 +76,6 @@ function App({
     </>
   );
 }
-
-export default App;
 
 App.getInitialProps = async (
   appContext: AppContext
@@ -155,4 +92,70 @@ App.getInitialProps = async (
   return { ...ctx, colorScheme: 'light' };
 };
 
-//todo: decompose header to components
+export default App;
+
+function Header() {
+  const router = useRouter();
+  return (
+    <MantineHeader height={60} px="1rem">
+      <Group position="apart" sx={{ height: '100%' }} spacing={0}>
+        <Logo />
+
+        <HiddenMobile>
+          <Box
+            component="form"
+            method="get"
+            action="/"
+            sx={{ flexGrow: 1, display: 'flex', columnGap: '1rem' }}
+            px="1rem"
+          >
+            <TextInput name="q" sx={{ width: '100%' }} />
+            <Button type="submit">Search</Button>
+          </Box>
+        </HiddenMobile>
+
+        <HiddenMobile>
+          <Group>
+            <ColorSchemeToggle />
+
+            <ActionIcon component={Link} href={{ pathname: '/cart' }}>
+              <ThemeIcon>
+                <BsCart3 />
+              </ThemeIcon>
+            </ActionIcon>
+
+            <ActionIcon component={Link} href={{ pathname: '/orders' }}>
+              <ThemeIcon>
+                <BsBoxSeam />
+              </ThemeIcon>
+            </ActionIcon>
+
+            <Button
+              component={Link}
+              href={{
+                pathname: '/login',
+                query: { callback: router.asPath }
+              }}
+            >
+              Log in
+            </Button>
+            <Button
+              variant="outline"
+              component={Link}
+              href={{
+                pathname: '/signup',
+                query: { callback: router.asPath }
+              }}
+            >
+              Sign up
+            </Button>
+          </Group>
+        </HiddenMobile>
+
+        <HiddenDesktop>
+          <NavigationDrawer />
+        </HiddenDesktop>
+      </Group>
+    </MantineHeader>
+  );
+}
