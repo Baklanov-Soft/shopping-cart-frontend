@@ -15,8 +15,10 @@ import {
   TextInput,
   ThemeIcon
 } from '@mantine/core';
-import { useLocalStorage } from '@mantine/hooks';
-import type { AppProps } from 'next/app';
+import { parse } from 'cookie';
+import useColorSchemeToggle from 'hooks/use-color-scheme-toggle';
+import type { AppContext, AppInitialProps, AppProps } from 'next/app';
+import NextApp from 'next/app';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -38,13 +40,16 @@ function HiddenDesktop({ children }: React.PropsWithChildren) {
   );
 }
 
-export default function App({ Component, pageProps }: AppProps) {
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    key: 'mantine-color-scheme',
-    defaultValue: 'light'
-  });
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+type AppOwnProps = {
+  colorScheme: ColorScheme;
+};
+
+function App({
+  Component,
+  pageProps,
+  colorScheme: cs
+}: AppProps & AppOwnProps) {
+  const [colorScheme, toggleColorScheme] = useColorSchemeToggle(cs);
   const router = useRouter();
 
   return (
@@ -132,5 +137,22 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+export default App;
+
+App.getInitialProps = async (
+  appContext: AppContext
+): Promise<AppOwnProps & AppInitialProps> => {
+  const ctx = await NextApp.getInitialProps(appContext);
+
+  if (appContext.ctx.req?.headers.cookie) {
+    const cookie = parse(appContext.ctx.req.headers.cookie);
+    const colorScheme =
+      (cookie['COLOR_SCHEME'] as ColorScheme | undefined) ?? 'light';
+    return { ...ctx, colorScheme };
+  }
+
+  return { ...ctx, colorScheme: 'light' };
+};
 
 //todo: decompose header to components
