@@ -10,7 +10,7 @@ import {
 import Head from 'next/head';
 import Link from 'next/link';
 import { fetchItems } from './api';
-import { ListItem, Money } from './types';
+import { ListItem, Money } from '@types/catalog';
 
 type CatalogPageProps = {
   items?: ListItem[];
