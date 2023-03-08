@@ -1,4 +1,4 @@
-export type Guitar = {
+export type Item = {
   uuid: string;
   name: string;
   description: string;
@@ -7,7 +7,7 @@ export type Guitar = {
   category: Category;
 };
 
-export type GuitarItem = {
+export type ListItem = {
   uuid: string;
   name: string;
   price: Money;

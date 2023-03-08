@@ -1,6 +1,6 @@
-import { Guitar } from '@pages/types';
+import { Item } from '@pages/types';
 
-const goods: Guitar[] = [
+const goods: Item[] = [
   {
     uuid: '03060c4f-cb85-4ff2-a85c-baf55b28c95c',
     name: 'MSI Immerse GH61 Gaming Headset',

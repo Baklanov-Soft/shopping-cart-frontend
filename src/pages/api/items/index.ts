@@ -1,4 +1,4 @@
-import { GuitarItem } from '@pages/types';
+import { ListItem } from '@pages/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import goods from './goods';
 
@@ -10,7 +10,7 @@ const items = goods.map((guitar) => ({
 
 export default function handler(
   _req: NextApiRequest,
-  res: NextApiResponse<GuitarItem[]>
+  res: NextApiResponse<ListItem[]>
 ) {
   res.status(200).json(items);
 }
