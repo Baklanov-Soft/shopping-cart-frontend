@@ -13,6 +13,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { BsBoxSeam, BsCart3 } from 'react-icons/bs';
 import { UrlObject } from 'url';
 
@@ -22,6 +23,7 @@ type NavigationDrawerProps = {
 
 function NavigationDrawer({ className }: NavigationDrawerProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
+  const router = useRouter();
 
   return (
     <>
@@ -59,7 +61,25 @@ function NavigationDrawer({ className }: NavigationDrawerProps) {
           <Divider my="sm" />
 
           <Group position="center" grow pb="lg" px="md">
-            <Button variant="outline">Log in</Button>
+            <Button
+              component={Link}
+              href={{
+                pathname: 'login',
+                query: { callback: router.asPath }
+              }}
+            >
+              Log in
+            </Button>
+            <Button
+              variant="outline"
+              component={Link}
+              href={{
+                pathname: 'signup',
+                query: { callback: router.asPath }
+              }}
+            >
+              Sign up
+            </Button>
           </Group>
         </ScrollArea>
       </Drawer>

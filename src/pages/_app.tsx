@@ -19,11 +19,12 @@ import { useLocalStorage } from '@mantine/hooks';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { BsBoxSeam, BsCart3 } from 'react-icons/bs';
 
 function HiddenMobile({ children }: React.PropsWithChildren) {
   return (
-    <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+    <MediaQuery smallerThan={840} styles={{ display: 'none' }}>
       {children}
     </MediaQuery>
   );
@@ -31,7 +32,7 @@ function HiddenMobile({ children }: React.PropsWithChildren) {
 
 function HiddenDesktop({ children }: React.PropsWithChildren) {
   return (
-    <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+    <MediaQuery largerThan={840} styles={{ display: 'none' }}>
       {children}
     </MediaQuery>
   );
@@ -44,6 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
   });
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+  const router = useRouter();
 
   return (
     <>
@@ -94,7 +96,25 @@ export default function App({ Component, pageProps }: AppProps) {
                     </ThemeIcon>
                   </ActionIcon>
 
-                  <Button variant="outline">Log in</Button>
+                  <Button
+                    component={Link}
+                    href={{
+                      pathname: 'login',
+                      query: { callback: router.asPath }
+                    }}
+                  >
+                    Log in
+                  </Button>
+                  <Button
+                    variant="outline"
+                    component={Link}
+                    href={{
+                      pathname: 'signup',
+                      query: { callback: router.asPath }
+                    }}
+                  >
+                    Sign up
+                  </Button>
                 </Group>
               </HiddenMobile>
 
