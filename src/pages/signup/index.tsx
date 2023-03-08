@@ -7,42 +7,42 @@ import { useState } from 'react';
 import CheckLoginForm from './CheckLoginForm';
 import PasswordForm from './PasswordForm';
 
-interface LoginPageProps {
+interface SignupPageProps {
   callback: string;
 }
 
-function LoginPage({ callback }: LoginPageProps) {
+function SignupPage({ callback }: SignupPageProps) {
   const [username, setUsername] = useState('');
-  const [step, setStep] = useState<'login' | 'password'>('login');
+  const [form, setForm] = useState<'login' | 'password'>('login');
   const router = useRouter();
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>Signup</title>
       </Head>
 
       <Container my={40} size="xs">
-        <Title align="center">Login</Title>
+        <Title align="center">Create account</Title>
         <Text color="dimmed" size="sm" align="center" mt={5}>
-          Do not have an account yet?{' '}
+          Already have an account?{' '}
           <Anchor
             size="sm"
             component={Link}
-            href={{ pathname: 'signup', query: { callback } }}
+            href={{ pathname: 'login', query: { callback } }}
           >
-            Create account
+            Login
           </Anchor>
         </Text>
 
         <Paper withBorder radius="md" shadow="md" p={30} mt={30}>
-          {step === 'login' && (
+          {form === 'login' && (
             <CheckLoginForm
               username={username}
               setUsername={setUsername}
-              onSuccess={() => setStep('password')}
+              onSuccess={() => setForm('password')}
             />
           )}
-          {step === 'password' && (
+          {form === 'password' && (
             <PasswordForm
               username={username}
               onSuccess={() => router.push(callback)}
@@ -54,7 +54,7 @@ function LoginPage({ callback }: LoginPageProps) {
   );
 }
 
-export default LoginPage;
+export default SignupPage;
 
 export function getServerSideProps(context: GetServerSidePropsContext) {
   const { callback } = context.query;
