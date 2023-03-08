@@ -6,7 +6,6 @@ interface CheckLoginFormProps {
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   onSuccess: () => void;
-  styles?: React.CSSProperties;
 }
 
 interface CheckLoginFormValues {
@@ -16,8 +15,7 @@ interface CheckLoginFormValues {
 function CheckLoginForm({
   username,
   setUsername,
-  onSuccess,
-  styles
+  onSuccess
 }: CheckLoginFormProps) {
   const form = useForm<CheckLoginFormValues>({
     initialValues: { username },
@@ -27,7 +25,6 @@ function CheckLoginForm({
   });
   return (
     <form
-      style={styles}
       onSubmit={form.onSubmit(({ username }) =>
         exists(username).then((ok) => {
           if (ok) {

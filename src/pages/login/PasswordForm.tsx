@@ -9,10 +9,9 @@ interface PasswordFormValues {
 interface PasswordFormProps {
   username: string;
   onSuccess: () => void;
-  styles?: React.CSSProperties;
 }
 
-function PasswordForm({ onSuccess, username, styles }: PasswordFormProps) {
+function PasswordForm({ onSuccess, username }: PasswordFormProps) {
   const form = useForm<PasswordFormValues>({
     initialValues: { password: '' },
     validate: {
@@ -21,7 +20,6 @@ function PasswordForm({ onSuccess, username, styles }: PasswordFormProps) {
   });
   return (
     <form
-      style={styles}
       onSubmit={form.onSubmit((values) =>
         login(username, values.password).then(onSuccess)
       )}
