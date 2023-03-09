@@ -42,5 +42,19 @@
     "node": "18.14.2",
     "yarn": "3.4.1"
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@3.4.1",
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSameLine": false,
+    "jsxSingleQuote": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "none"
+  },
+  "eslintConfig": {
+    "extends": [
+      "next/core-web-vitals",
+      "plugin:prettier/recommended"
+    ]
+  }
 }
