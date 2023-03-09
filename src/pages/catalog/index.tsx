@@ -9,8 +9,7 @@ import {
 } from '@mantine/core';
 import Head from 'next/head';
 import Link from 'next/link';
-import { fetchItems } from './api';
-import { ListItem, Money } from '@types/catalog';
+import { ListItem, Money } from 'types/catalog';
 
 type CatalogPageProps = {
   items?: ListItem[];
@@ -90,4 +89,8 @@ export async function getServerSideProps() {
   return {
     props: { items }
   };
+}
+
+function fetchItems(): Promise<ListItem[]> {
+  return fetch('http://localhost:3000//api/items').then((res) => res.json());
 }

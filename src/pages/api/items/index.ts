@@ -1,5 +1,5 @@
-import { ListItem } from '@pages/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { ListItem } from 'types/catalog';
 import goods from './goods';
 
 const items = goods.map((guitar) => ({
