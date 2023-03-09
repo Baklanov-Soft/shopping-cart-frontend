@@ -2526,13 +2526,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-base64@npm:^3.7.5":
-  version: 3.7.5
-  resolution: "js-base64@npm:3.7.5"
-  checksum: 67a78c8b1c47b73f1c6fba1957e9fe6fd9dc78ac93ac46cc2e43472dcb9cf150d126fb0e593192e88e0497354fa634d17d255add7cc6ee3c7b4d29870faa8e18
-  languageName: node
-  linkType: hard
-
 "js-sdsl@npm:^4.1.4":
   version: 4.3.0
   resolution: "js-sdsl@npm:4.3.0"
@@ -3384,7 +3377,6 @@ __metadata:
     eslint-config-next: 13.2.1
     eslint-config-prettier: ^8.6.0
     eslint-plugin-prettier: ^4.2.1
-    js-base64: ^3.7.5
     next: 13.2.1
     prettier: ^2.8.4
     react: 18.2.0
