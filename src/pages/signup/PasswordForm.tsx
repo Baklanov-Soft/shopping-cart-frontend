@@ -1,6 +1,5 @@
 import { Button, PasswordInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { register } from './api';
 
 interface PasswordFormValues {
   password: string;
@@ -41,4 +40,10 @@ export default PasswordForm;
 
 function canNotBeEmpty(value: string) {
   return !value && 'Can not be empty';
+}
+function register(username: string, password: string) {
+  return fetch('/api/register', {
+    method: 'post',
+    body: JSON.stringify({ username, password })
+  });
 }

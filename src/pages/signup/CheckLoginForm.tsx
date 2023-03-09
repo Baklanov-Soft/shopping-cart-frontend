@@ -1,6 +1,5 @@
 import { Button, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { free } from './api';
 
 interface CheckLoginFormProps {
   username: string;
@@ -53,4 +52,10 @@ export default CheckLoginForm;
 
 function canNotBeEmpty(value: string) {
   return !value && 'Can not be empty';
+}
+function free(username: string) {
+  const encodedUsername = encodeURIComponent(username);
+  return fetch(`/api/auth/users/check?username=${encodedUsername}`).then(
+    (r) => r.status == 404
+  );
 }
