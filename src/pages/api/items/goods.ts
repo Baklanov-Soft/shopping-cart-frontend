@@ -1,4 +1,4 @@
-import { Item } from '@pages/types';
+import { Item } from 'types/catalog';
 
 const goods: Item[] = [
   {

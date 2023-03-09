@@ -1,5 +1,5 @@
-import { Item } from '@pages/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { Item } from 'types/catalog';
 import goods from './goods';
 
 export default function handler(

@@ -1,0 +1,17 @@
+.git
+.github
+.next
+.vscode
+.yarn/*
+!.yarn/plugins
+!.yarn/releases
+node_modules
+.dockerignore
+.editorconfig
+.eslintignore
+.gitattributes
+.gitignore
+.prettierignore
+Dockerfile
+next-env.d.ts
+README.md
