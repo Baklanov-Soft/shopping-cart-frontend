@@ -53,9 +53,10 @@ export default CheckLoginForm;
 function canNotBeEmpty(value: string) {
   return !value && 'Can not be empty';
 }
+
 function exists(username: string) {
   const encodedUsername = encodeURIComponent(username);
-  return fetch(`/api/auth/users/check?username=${encodedUsername}`).then(
-    (r) => r.status == 200
-  );
+  return fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/check?Username%20to%20check=${encodedUsername}`
+  ).then((r) => r.status == 200);
 }
