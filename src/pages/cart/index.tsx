@@ -24,7 +24,7 @@ function CartPage({ cart }: CartPageProps) {
         </Box>
         <Box sx={{ flexBasis: '33%' }}>
           <Box component="aside" sx={{ position: 'sticky', top: 0 }}>
-            <CheckoutInfo quantity={2} totalPrice={cart.total} />
+            <CheckoutInfo totalPrice={cart.total} />
           </Box>
         </Box>
       </Flex>
