@@ -19,5 +19,5 @@ export const cartItems: Cart = {
       quantity: 3
     }
   ],
-  total: { currency: 'USD', value: 300 }
+  total: { currency: 'USD', value: 301 }
 };

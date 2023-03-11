@@ -7,7 +7,7 @@ import type { NextApiRequestCookies } from 'next/dist/server/api-utils';
 
 declare module 'http' {
   interface IncomingMessage {
-    token?: string;
+    token: string;
   }
 }
 

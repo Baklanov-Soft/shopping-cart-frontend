@@ -10,6 +10,7 @@ import {
 import Head from 'next/head';
 import Link from 'next/link';
 import { ListItem, Money } from 'types/catalog';
+import moneyToString from 'utils/money-to-string';
 
 type CatalogPageProps = {
   items?: ListItem[];
@@ -74,10 +75,11 @@ function ItemCard({ item: { name, price, uuid } }: ItemCardProps) {
 interface MoneyProps {
   children: Money;
 }
-function Money({ children: { currency, value } }: MoneyProps) {
+
+function Money({ children }: MoneyProps) {
   return (
     <Text weight="bold" size="xl" component="span">
-      {currency.concat(value.toString())}
+      {moneyToString(children)}
     </Text>
   );
 }

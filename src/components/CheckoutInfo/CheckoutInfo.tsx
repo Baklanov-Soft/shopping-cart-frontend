@@ -1,5 +1,6 @@
 import { Box, Button, Divider, Flex, Text } from '@mantine/core';
 import type { Money } from 'types/catalog';
+import moneyToString from 'utils/money-to-string';
 
 interface CheckoutInfoProps {
   quantity: number;
@@ -29,19 +30,9 @@ export function CheckoutInfo({ quantity, totalPrice }: CheckoutInfoProps) {
           Total price
         </Text>
         <Text component="span" weight="bold" size="lg">
-          {toString(totalPrice)}
+          {moneyToString(totalPrice)}
         </Text>
       </Flex>
     </div>
   );
-}
-
-function toString({ currency, value }: Money) {
-  switch (currency) {
-    case 'USD':
-      return '$' + value.toString();
-
-    default:
-      throw new Error('Unsupported currency.');
-  }
 }
