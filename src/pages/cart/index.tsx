@@ -1,8 +1,9 @@
+import { CartItemRow } from '@components/CartItem';
 import { CheckoutInfo } from '@components/CheckoutInfo';
-import { Box, Checkbox, Flex, NumberInput, Table, Title } from '@mantine/core';
+import { Anchor, Box, Flex, Table, Text, Title } from '@mantine/core';
 import Head from 'next/head';
+import Link from 'next/link';
 import { Cart, CartItem } from 'types/cart';
-import moneyToString from 'utils/money-to-string';
 import { withTokenSsr } from 'utils/withToken';
 
 interface CartPageProps {
@@ -20,7 +21,11 @@ function CartPage({ cart }: CartPageProps) {
 
       <Flex gap={16}>
         <Box sx={{ flexBasis: '66%' }}>
-          <CartItems items={cart.items} />
+          {cart.items.length > 0 ? (
+            <CartItems items={cart.items} />
+          ) : (
+            <EmptyCartNote />
+          )}
         </Box>
         <Box sx={{ flexBasis: '33%' }}>
           <Box component="aside" sx={{ position: 'sticky', top: 0 }}>
@@ -57,19 +62,22 @@ function CartItems({ items }: CartItemsProps) {
   return (
     <Table verticalSpacing="sm">
       <tbody>
-        {items.map(({ item, quantity }) => (
-          <tr key={item.uuid}>
-            <td>
-              <Checkbox />
-            </td>
-            <td>{item.name}</td>
-            <td>{moneyToString(item.price)}</td>
-            <td>
-              <NumberInput min={1} defaultValue={quantity} />
-            </td>
-          </tr>
+        {items.map((item) => (
+          <CartItemRow item={item} key={item.item.uuid} />
         ))}
       </tbody>
     </Table>
+  );
+}
+
+function EmptyCartNote() {
+  return (
+    <Text color="dimmed" align="center" size="lg">
+      There is nothing to checkout. Go to{' '}
+      <Anchor component={Link} href={{ pathname: '/catalog' }}>
+        catalog
+      </Anchor>{' '}
+      and add some goods.
+    </Text>
   );
 }
