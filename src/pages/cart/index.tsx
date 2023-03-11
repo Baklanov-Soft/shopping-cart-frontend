@@ -14,7 +14,7 @@ function CartPage() {
 
       <Flex gap={16}>
         <Box sx={{ flexBasis: '66%' }}>
-          <Table>
+          <Table verticalSpacing="xs" horizontalSpacing="md">
             <tbody>
               <tr>
                 <td>
