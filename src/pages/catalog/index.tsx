@@ -92,5 +92,5 @@ export async function getServerSideProps() {
 }
 
 function fetchItems(): Promise<ListItem[]> {
-  return fetch('http://localhost:3000//api/items').then((res) => res.json());
+  return fetch('http://localhost:3000/api/v1/items').then((res) => res.json());
 }
