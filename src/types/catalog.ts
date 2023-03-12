@@ -1,29 +1,29 @@
-export type Item = {
+export interface Item {
   uuid: string;
   name: string;
   description: string;
   price: Money;
   brand: Brand;
   category: Category;
-};
+}
 
-export type ListItem = {
+export interface ListItem {
   uuid: string;
   name: string;
   price: Money;
-};
+}
 
-export type Money = {
+export interface Money {
   value: number;
-  currency: string;
-};
+  currency: 'USD';
+}
 
-export type Brand = {
+export interface Brand {
   uuid: string;
   name: string;
-};
+}
 
-export type Category = {
+export interface Category {
   uuid: string;
   name: string;
-};
+}

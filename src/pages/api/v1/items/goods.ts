@@ -6,7 +6,7 @@ const goods: Item[] = [
     name: 'MSI Immerse GH61 Gaming Headset',
     description:
       'About this item, hi-res virtual 7.1 surround sound, speakers installed by onkyo, built-in ess dac & amp, high-quality retractable microphone, usb & 3.5mm audio connectors, Connectivity technology: Wired, Included components: cable',
-    price: { value: 110.8, currency: 'usd' },
+    price: { value: 110.8, currency: 'USD' },
     brand: {
       uuid: '47d2bdef-1065-4def-ae33-a1a4a000c27f',
       name: 'MSI'
@@ -26,7 +26,7 @@ const goods: Item[] = [
     },
     description:
       'Ultra-compact design: The pocket-size UV flashlight can be carried along to detect stains in your car or illuminate minerals, body art',
-    price: { currency: 'usd', value: 12.99 }
+    price: { currency: 'USD', value: 12.99 }
   },
   {
     uuid: 'fa4c7d73-3eb8-48cd-91eb-905513c01993',
@@ -40,7 +40,7 @@ const goods: Item[] = [
       'If you’re searching for great value in a classic diver-look watch, look no further than the MRW200 from Casio.',
     price: {
       value: 21.62,
-      currency: 'usd'
+      currency: 'USD'
     }
   },
   {
@@ -58,7 +58,7 @@ const goods: Item[] = [
       'Take your holidays to new heights with the Marvel Funko Advent Calendar! Spider-Man is swinging by to deliver 24 unique Funko Pocket Pops! as you count down to your winter festivities.',
     price: {
       value: 35.71,
-      currency: 'usd'
+      currency: 'USD'
     }
   },
   {
@@ -71,7 +71,7 @@ const goods: Item[] = [
       name: 'PC Gaming Mice',
       uuid: 'd1d0e5c7-7309-43a0-a2a2-b8409e565200'
     },
-    price: { value: 19.99, currency: 'usd' }
+    price: { value: 19.99, currency: 'USD' }
   }
 ];
 

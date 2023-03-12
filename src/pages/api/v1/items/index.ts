@@ -8,9 +8,8 @@ const items = goods.map((guitar) => ({
   price: guitar.price
 }));
 
-export default function handler(
-  _req: NextApiRequest,
-  res: NextApiResponse<ListItem[]>
-) {
+function handler(_req: NextApiRequest, res: NextApiResponse<ListItem[]>) {
   res.status(200).json(items);
 }
+
+export default handler;

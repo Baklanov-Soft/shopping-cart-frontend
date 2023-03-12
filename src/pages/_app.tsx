@@ -77,19 +77,19 @@ function App({
   );
 }
 
-App.getInitialProps = async (
+App.getInitialProps = async function getInitialProps(
   appContext: AppContext
-): Promise<AppOwnProps & AppInitialProps> => {
-  const ctx = await NextApp.getInitialProps(appContext);
+): Promise<AppOwnProps & AppInitialProps> {
+  const appInitialProps = await NextApp.getInitialProps(appContext);
 
   if (appContext.ctx.req?.headers.cookie) {
     const cookie = parse(appContext.ctx.req.headers.cookie);
     const colorScheme =
       (cookie['COLOR_SCHEME'] as ColorScheme | undefined) ?? 'light';
-    return { ...ctx, colorScheme };
+    return { ...appInitialProps, colorScheme };
   }
 
-  return { ...ctx, colorScheme: 'light' };
+  return { ...appInitialProps, colorScheme: 'light' };
 };
 
 export default App;
