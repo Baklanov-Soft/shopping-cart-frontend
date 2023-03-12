@@ -1,20 +1,10 @@
-import { CartItemRow } from '@components/CartItem';
-import { CheckoutInfo } from '@components/CheckoutInfo';
-import {
-  Anchor,
-  Box,
-  Button,
-  Checkbox,
-  Flex,
-  Text,
-  Title
-} from '@mantine/core';
-import { SelectionProvider, toggleAll, useSelection } from 'context/selection';
+import { CheckoutInfo } from '@components//cart/CheckoutInfo';
+import { CartItems } from '@components/cart/CartItems';
+import { EmptyCartNote } from '@components/cart/EmptyCartNote';
+import { Box, Flex, Title } from '@mantine/core';
 import { UpdateCartProvider, useUpdateCartForm } from 'context/update-cart';
 import Head from 'next/head';
-import Link from 'next/link';
-import { IoMdClose } from 'react-icons/io';
-import { Cart, CartItem } from 'types/cart';
+import { Cart } from 'types/cart';
 import { withTokenSsr } from 'utils/withToken';
 
 interface CartPageProps {
@@ -77,78 +67,4 @@ function getCart(token: string): Promise<Cart> {
       Authentication: `Bearer ${token}`
     }
   }).then((r) => r.json());
-}
-
-interface CartItemsProps {
-  items: CartItem[];
-}
-
-function CartItems({ items }: CartItemsProps) {
-  return (
-    <SelectionProvider>
-      <Box mt={8}>
-        <TopActions items={items} />
-        <Box mt={16}>
-          {items.map((item, index) => (
-            <CartItemRow
-              sx={(theme) => ({
-                ':not(:last-child)': {
-                  borderBottomWidth: 1,
-                  borderBottomStyle: 'solid',
-                  borderBottomColor:
-                    theme.colorScheme === 'dark'
-                      ? theme.colors.gray[7]
-                      : theme.colors.gray[3],
-                  marginBottom: theme.spacing.sm,
-                  paddingBottom: theme.spacing.sm
-                }
-              })}
-              key={item.item.uuid}
-              item={item}
-              index={index}
-            />
-          ))}
-        </Box>
-      </Box>
-    </SelectionProvider>
-  );
-}
-
-interface TopActionsProps {
-  items: CartItem[];
-}
-
-function TopActions({ items }: TopActionsProps) {
-  const { state, dispatch } = useSelection();
-
-  return (
-    <Flex align="center" gap={8}>
-      <Checkbox
-        checked={state.length === items.length}
-        indeterminate={state.length > 0 && state.length !== items.length}
-        onChange={() => dispatch(toggleAll(items))}
-        label="Select all"
-      />
-      <Button
-        variant="subtle"
-        compact
-        color="red"
-        leftIcon={<IoMdClose size={18} />}
-      >
-        Delete selected
-      </Button>
-    </Flex>
-  );
-}
-
-function EmptyCartNote() {
-  return (
-    <Text color="dimmed" align="center" size="lg">
-      There is nothing to checkout. Go to{' '}
-      <Anchor component={Link} href={{ pathname: '/catalog' }}>
-        catalog
-      </Anchor>{' '}
-      and add some goods.
-    </Text>
-  );
 }

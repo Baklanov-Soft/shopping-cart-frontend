@@ -1,1 +1,0 @@
-export { CheckoutInfo } from './CheckoutInfo';

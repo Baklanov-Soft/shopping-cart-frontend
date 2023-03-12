@@ -1,7 +1,6 @@
 import { ActionIcon, Button, Group } from '@mantine/core';
 import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
-import { logout } from './api';
 
 function LogoutButton() {
   const [confirmRequired, setConfirmRequired] = useState(false);
@@ -46,3 +45,7 @@ function LogoutButton() {
 }
 
 export default LogoutButton;
+
+function logout() {
+  return fetch('/api/logout', { method: 'post' });
+}
