@@ -1,45 +1,53 @@
-import { Checkbox, NumberInput } from '@mantine/core';
-import { useDebouncedState } from '@mantine/hooks';
-import { useEffect, useState } from 'react';
+import { Box, Button, Checkbox, Flex, NumberInput, Sx } from '@mantine/core';
+import { toggle, useSelection } from 'context/selection';
+import { useUpdateCartContext } from 'context/update-cart';
 import { CartItem } from 'types/cart';
 import moneyToString from 'utils/money-to-string';
 
 interface CartItemRowProps {
   item: CartItem;
+  index: number;
+  sx?: Sx;
 }
 
-export function CartItemRow({ item }: CartItemRowProps) {
-  const [quantity, setQuantity] = useDebouncedState(item.quantity, 500);
-  const [error, setError] = useState<string | undefined>(undefined);
+export function CartItemRow({ item, index, sx }: CartItemRowProps) {
+  const { state, dispatch } = useSelection();
 
-  useEffect(() => {
-    updateQuantity(item.item.uuid, quantity);
-  }, [quantity, item.item.uuid]);
-
+  const form = useUpdateCartContext();
   return (
-    <tr>
-      <td>
-        <Checkbox />
-      </td>
-      <td>{item.item.name}</td>
-      <td>{moneyToString(item.item.price)}</td>
-      <td>
+    <Flex sx={sx}>
+      <Checkbox
+        checked={state.includes(item.item.uuid)}
+        onChange={() => dispatch(toggle(item.item.uuid))}
+        mr={12}
+      />
+      <Flex
+        direction="column"
+        justify="space-between"
+        sx={{ flexBasis: '100%' }}
+      >
+        <span>{item.item.name}</span>
+        <CartItemActions />
+      </Flex>
+      <Box>
+        <span>{moneyToString(item.item.price)}</span>
         <NumberInput
           min={1}
           placeholder="quantity"
-          defaultValue={quantity}
-          onChange={(n) => {
-            if (n) {
-              setQuantity(n);
-              setError(undefined);
-            } else {
-              setError('Can not be empty or zero');
-            }
-          }}
-          error={error}
+          {...form.getInputProps(`items.${index}.${item.item.uuid}`)}
         />
-      </td>
-    </tr>
+      </Box>
+    </Flex>
+  );
+}
+
+function CartItemActions() {
+  return (
+    <Box>
+      <Button color="red" compact variant="subtle">
+        Delete
+      </Button>
+    </Box>
   );
 }
 
