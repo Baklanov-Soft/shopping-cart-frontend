@@ -53,6 +53,7 @@ export default CheckLoginForm;
 function canNotBeEmpty(value: string) {
   return !value && 'Can not be empty';
 }
+
 function exists(username: string) {
   const encodedUsername = encodeURIComponent(username);
   return fetch(

@@ -1,9 +1,12 @@
 import { serialize } from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { withTokenApiRoute } from 'utils/withToken';
 
-function handler(req: NextApiRequest, res: NextApiResponse) {
-  const token = req.cookies['ACCESS_TOKEN'];
-  if (!token) {
+const handler = withTokenApiRoute(function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (!req.token) {
     return res.status(400).end();
   }
 
@@ -16,6 +19,6 @@ function handler(req: NextApiRequest, res: NextApiResponse) {
       })
     )
     .end();
-}
+});
 
 export default handler;
