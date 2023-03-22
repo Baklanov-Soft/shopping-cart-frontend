@@ -23,9 +23,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
 export default handler;
 
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-
-function register(createUser: CreateUser) {
-  return Promise.resolve(token);
+function register(createUser: CreateUser): Promise<string> {
+  return fetch(`${process.env.API_URL}/api/v1/auth/register`, {
+    method: 'post',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(createUser)
+  }).then((r) => r.json());
 }

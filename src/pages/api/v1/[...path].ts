@@ -13,7 +13,7 @@ export const config = {
 function handler(req: NextApiRequest, res: NextApiResponse) {
   return new Promise(function proxyHandler(resolve, reject) {
     proxy.once('proxyRes', resolve).once('error', reject).web(req, res, {
-      target: process.env.NEXT_PUBLIC_API_URL
+      target: process.env.API_URL
     });
   });
 }

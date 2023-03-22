@@ -41,9 +41,13 @@ export default PasswordForm;
 function canNotBeEmpty(value: string) {
   return !value && 'Can not be empty';
 }
+
 function register(username: string, password: string) {
-  return fetch('/api/register', {
+  return fetch('/api/v1/auth/register', {
     method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({ username, password })
   });
 }

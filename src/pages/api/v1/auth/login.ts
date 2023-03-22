@@ -24,7 +24,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 export default handler;
 
 function login(loginUser: LoginUser): Promise<string> {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`, {
+  return fetch(`${process.env.API_URL}/api/v1/auth/login`, {
     method: 'post',
     headers: {
       Accept: 'application/json',
