@@ -21,7 +21,7 @@ type NavigationDrawerProps = {
   className?: string;
 };
 
-function NavigationDrawer({ className }: NavigationDrawerProps) {
+export function NavigationDrawer({ className }: NavigationDrawerProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const router = useRouter();
 
@@ -86,8 +86,6 @@ function NavigationDrawer({ className }: NavigationDrawerProps) {
     </>
   );
 }
-
-export default NavigationDrawer;
 
 type DrawerButtonProps = {
   title: string;

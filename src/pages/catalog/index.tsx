@@ -1,15 +1,7 @@
-import {
-  Anchor,
-  Box,
-  Button,
-  Card,
-  SimpleGrid,
-  Text,
-  Title
-} from '@mantine/core';
+import { ItemCard } from '@components/catalog/ItemCard';
+import { SimpleGrid, Title } from '@mantine/core';
 import Head from 'next/head';
-import Link from 'next/link';
-import { ListItem, Money } from 'types/catalog';
+import { ListItem } from 'types/catalog';
 
 type CatalogPageProps = {
   items?: ListItem[];
@@ -21,7 +13,9 @@ function CatalogPage({ items }: CatalogPageProps) {
       <Head>
         <title>Catalog</title>
       </Head>
+
       <Title>Catalog page</Title>
+
       {items && (
         <SimpleGrid
           breakpoints={[
@@ -38,49 +32,6 @@ function CatalogPage({ items }: CatalogPageProps) {
     </>
   );
 }
-interface ItemCardProps {
-  item: ListItem;
-}
-function ItemCard({ item: { name, price, uuid } }: ItemCardProps) {
-  return (
-    <Card
-      shadow="sm"
-      p="md"
-      radius="md"
-      withBorder
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-      }}
-    >
-      <Anchor component={Link} href={{ pathname: uuid }} size="md">
-        {name}
-      </Anchor>
-      <Box
-        mt="md"
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}
-      >
-        <Money>{price}</Money>
-        <Button size="xs">Add to cart</Button>
-      </Box>
-    </Card>
-  );
-}
-interface MoneyProps {
-  children: Money;
-}
-function Money({ children: { currency, value } }: MoneyProps) {
-  return (
-    <Text weight="bold" size="xl" component="span">
-      {currency.concat(value.toString())}
-    </Text>
-  );
-}
 
 export default CatalogPage;
 
@@ -92,5 +43,5 @@ export async function getServerSideProps() {
 }
 
 function fetchItems(): Promise<ListItem[]> {
-  return fetch('http://localhost:3000//api/items').then((res) => res.json());
+  return fetch('http://localhost:3000/api/v1/items').then((res) => res.json());
 }
