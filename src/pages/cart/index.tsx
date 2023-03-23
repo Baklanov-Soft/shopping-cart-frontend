@@ -5,7 +5,7 @@ import { Box, Flex, Title } from '@mantine/core';
 import { UpdateCartProvider, useUpdateCartForm } from 'context/update-cart';
 import Head from 'next/head';
 import { Cart } from 'types/cart';
-import { withTokenSsr } from 'utils/withToken';
+import { withTokenSsr } from 'utils/with-token';
 
 interface CartPageProps {
   cart: Cart;
@@ -61,10 +61,11 @@ export const getServerSideProps = withTokenSsr(
   }
 );
 
-function getCart(token: string): Promise<Cart> {
-  return fetch('http://localhost:3000/api/v1/cart', {
+function getCart(token?: string): Promise<Cart> {
+  return fetch(`${process.env.API_URL}/api/v1/cart`, {
     headers: {
-      Authentication: `Bearer ${token}`
+      Authentication: `Bearer ${token}`,
+      Accept: 'application/json'
     }
   }).then((r) => r.json());
 }

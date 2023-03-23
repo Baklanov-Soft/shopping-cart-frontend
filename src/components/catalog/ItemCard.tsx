@@ -1,7 +1,7 @@
 import { Anchor, Box, Button, Card, Text } from '@mantine/core';
 import Link from 'next/link';
 import type { ListItem } from 'types/catalog';
-import moneyToString from 'utils/money-to-string';
+import { moneyToString } from 'utils/money-to-string';
 
 interface ItemCardProps {
   item: ListItem;

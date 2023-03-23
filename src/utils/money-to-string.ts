@@ -1,6 +1,6 @@
 import { Money } from 'types/catalog';
 
-function moneyToString({ currency, value }: Money) {
+export function moneyToString({ currency, value }: Money) {
   switch (currency) {
     case 'USD':
       return '$' + value.toString();
@@ -9,5 +9,3 @@ function moneyToString({ currency, value }: Money) {
       throw new Error('Unsupported currency.');
   }
 }
-
-export default moneyToString;
