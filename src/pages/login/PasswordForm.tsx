@@ -43,8 +43,11 @@ function canNotBeEmpty(value: string) {
 }
 
 function login(username: string, password: string) {
-  return fetch('/api/login', {
+  return fetch('/api/v1/auth/login', {
     method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({ username, password })
   });
 }
