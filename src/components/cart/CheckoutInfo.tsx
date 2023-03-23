@@ -1,6 +1,6 @@
 import { Box, Button, Divider, Flex, Text } from '@mantine/core';
 import type { Money } from 'types/catalog';
-import moneyToString from 'utils/money-to-string';
+import { moneyToString } from 'utils/money-to-string';
 
 interface CheckoutInfoProps {
   totalPrice: Money;

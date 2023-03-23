@@ -1,13 +1,13 @@
 import { serialize } from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-interface LoginUser {
+interface CreateUser {
   username: string;
   password: string;
 }
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const token = await login(req.body);
+  const token = await register(req.body);
 
   res
     .setHeader(
@@ -23,13 +23,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
 export default handler;
 
-function login(loginUser: LoginUser): Promise<string> {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`, {
+function register(createUser: CreateUser): Promise<string> {
+  return fetch(`${process.env.API_URL}/api/v1/auth/register`, {
     method: 'post',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(loginUser)
+    body: JSON.stringify(createUser)
   }).then((r) => r.json());
 }

@@ -1,6 +1,6 @@
 import { serialize } from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { withTokenApiRoute } from 'utils/withToken';
+import { withTokenApiRoute } from 'utils/with-token';
 
 const handler = withTokenApiRoute(function handler(
   req: NextApiRequest,

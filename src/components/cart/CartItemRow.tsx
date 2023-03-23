@@ -2,7 +2,7 @@ import { Box, Button, Checkbox, Flex, NumberInput, Sx } from '@mantine/core';
 import { toggle, useSelection } from 'context/selection';
 import { useUpdateCartContext } from 'context/update-cart';
 import { CartItem } from 'types/cart';
-import moneyToString from 'utils/money-to-string';
+import { moneyToString } from 'utils/money-to-string';
 
 interface CartItemRowProps {
   item: CartItem;
