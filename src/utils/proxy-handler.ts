@@ -9,7 +9,7 @@ export function handler(req: NextApiRequest, res: NextApiResponse) {
     delete req.headers.cookie;
 
     proxy.once('proxyRes', resolve).once('error', reject).web(req, res, {
-      target: process.env.API_URL
+      target: process.env.NEXT_PUBLIC_API_URL
     });
   });
 }
@@ -36,7 +36,7 @@ export function makeSecureHandler(authorizedVerbs: HttpVerb[]) {
       delete req.headers.cookie;
 
       proxy.once('proxyRes', resolve).once('error', reject).web(req, res, {
-        target: process.env.API_URL
+        target: process.env.NEXT_PUBLIC_API_URL
       });
     });
   });

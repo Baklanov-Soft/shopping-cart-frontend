@@ -53,6 +53,7 @@ App.getInitialProps = async function getInitialProps(
 ): Promise<AppOwnProps & AppInitialProps> {
   const appInitialProps = await NextApp.getInitialProps(appContext);
 
+  //todo: use cookies from req
   if (appContext.ctx.req?.headers.cookie) {
     const cookie = parse(appContext.ctx.req.headers.cookie);
     const colorScheme =

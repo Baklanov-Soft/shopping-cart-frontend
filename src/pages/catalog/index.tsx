@@ -1,13 +1,19 @@
 import { ItemCard } from '@components/catalog/ItemCard';
 import { SimpleGrid, Title } from '@mantine/core';
 import Head from 'next/head';
+import useSWR from 'swr';
 import { ListItem } from 'types/catalog';
 
-type CatalogPageProps = {
+interface CatalogPageProps {
   items?: ListItem[];
-};
+}
 
 function CatalogPage({ items }: CatalogPageProps) {
+  const { data } = useSWR('/api/v1/items', fetchItems, {
+    fallbackData: items,
+    revalidateOnMount: false
+  });
+
   return (
     <>
       <Head>
@@ -16,7 +22,7 @@ function CatalogPage({ items }: CatalogPageProps) {
 
       <Title>Catalog page</Title>
 
-      {items && (
+      {data && (
         <SimpleGrid
           breakpoints={[
             { minWidth: 'xs', cols: 2 },
@@ -24,7 +30,7 @@ function CatalogPage({ items }: CatalogPageProps) {
             { minWidth: 'md', cols: 4 }
           ]}
         >
-          {items.map((item) => (
+          {data.map((item) => (
             <ItemCard item={item} key={item.uuid} />
           ))}
         </SimpleGrid>
@@ -36,12 +42,12 @@ function CatalogPage({ items }: CatalogPageProps) {
 export default CatalogPage;
 
 export async function getServerSideProps() {
-  const items = await fetchItems();
+  const items = await fetchItems('/api/v1/items');
   return {
     props: { items }
   };
 }
 
-function fetchItems(): Promise<ListItem[]> {
-  return fetch('http://localhost:3000/api/v1/items').then((res) => res.json());
+function fetchItems(key: string): Promise<ListItem[]> {
+  return fetch(process.env.NEXT_PUBLIC_API_URL + key).then((res) => res.json());
 }

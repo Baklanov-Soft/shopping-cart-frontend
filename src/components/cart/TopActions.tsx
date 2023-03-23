@@ -1,7 +1,7 @@
 import { Button, Checkbox, Flex } from '@mantine/core';
-import { CartItem } from 'types/cart';
 import { toggleAll, useSelection } from 'context/selection';
 import { IoMdClose } from 'react-icons/io';
+import { CartItem } from 'types/cart';
 
 interface TopActionsProps {
   items: CartItem[];
@@ -23,6 +23,7 @@ export function TopActions({ items }: TopActionsProps) {
         compact
         color="red"
         leftIcon={<IoMdClose size={18} />}
+        onClick={() => console.log(state)}
       >
         Delete selected
       </Button>
