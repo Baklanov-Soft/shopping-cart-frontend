@@ -1,8 +1,8 @@
-import { Anchor, Box, Button, Card, Text } from '@mantine/core';
+import { Anchor, Box, Card, Text } from '@mantine/core';
 import Link from 'next/link';
-// import useSWRMutation from 'swr/mutation';
 import type { ListItem } from 'types/catalog';
 import { moneyToString } from 'utils/money-to-string';
+import { AddToCartButton } from './AddToCartButton';
 
 interface ItemCardProps {
   item: ListItem;
@@ -43,9 +43,4 @@ export function ItemCard({ item: { name, price, uuid } }: ItemCardProps) {
       </Box>
     </Card>
   );
-}
-
-function AddToCartButton() {
-  // const {} = useSWRMutation('/');
-  return <Button size="xs">Add to cart</Button>;
 }

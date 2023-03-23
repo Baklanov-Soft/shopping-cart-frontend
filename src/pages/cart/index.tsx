@@ -61,10 +61,10 @@ export const getServerSideProps = withTokenSsr(
   }
 );
 
-function getCart(token?: string): Promise<Cart> {
-  return fetch(`${process.env.API_URL}/api/v1/cart`, {
+async function getCart(token?: string): Promise<Cart> {
+  return fetch(process.env.API_URL + '/api/v1/cart', {
     headers: {
-      Authentication: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
       Accept: 'application/json'
     }
   }).then((r) => r.json());

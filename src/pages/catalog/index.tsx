@@ -5,7 +5,7 @@ import useSWR from 'swr';
 import { ListItem } from 'types/catalog';
 
 interface CatalogPageProps {
-  items?: ListItem[];
+  items: ListItem[];
 }
 
 function CatalogPage({ items }: CatalogPageProps) {
@@ -42,12 +42,13 @@ function CatalogPage({ items }: CatalogPageProps) {
 export default CatalogPage;
 
 export async function getServerSideProps() {
-  const items = await fetchItems('/api/v1/items');
+  const res = await fetch(process.env.API_URL + '/api/v1/items');
+  const items = await res.json();
   return {
     props: { items }
   };
 }
 
 function fetchItems(key: string): Promise<ListItem[]> {
-  return fetch(process.env.NEXT_PUBLIC_API_URL + key).then((res) => res.json());
+  return fetch(key).then((res) => res.json());
 }
