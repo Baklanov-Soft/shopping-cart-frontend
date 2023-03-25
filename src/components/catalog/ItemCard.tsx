@@ -39,7 +39,7 @@ export function ItemCard({ item: { name, price, uuid } }: ItemCardProps) {
         <Text weight="bold" size="xl" component="span">
           {moneyToString(price)}
         </Text>
-        <AddToCartButton />
+        <AddToCartButton uuid={uuid} />
       </Box>
     </Card>
   );

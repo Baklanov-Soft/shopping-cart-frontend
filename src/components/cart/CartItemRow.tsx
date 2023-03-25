@@ -1,6 +1,5 @@
 import { Box, Button, Checkbox, Flex, NumberInput, Sx } from '@mantine/core';
 import { toggle, useSelection } from 'context/selection';
-import { useUpdateCartContext } from 'context/update-cart';
 import { CartItem } from 'types/cart';
 import { moneyToString } from 'utils/money-to-string';
 
@@ -13,7 +12,6 @@ interface CartItemRowProps {
 export function CartItemRow({ item, index, sx }: CartItemRowProps) {
   const { state, dispatch } = useSelection();
 
-  const form = useUpdateCartContext();
   return (
     <Flex sx={sx}>
       <Checkbox
@@ -31,11 +29,7 @@ export function CartItemRow({ item, index, sx }: CartItemRowProps) {
       </Flex>
       <Box>
         <span>{moneyToString(item.item.price)}</span>
-        <NumberInput
-          min={1}
-          placeholder="quantity"
-          {...form.getInputProps(`items.${index}.${item.item.uuid}`)}
-        />
+        <NumberInput min={1} placeholder="quantity" />
       </Box>
     </Flex>
   );
