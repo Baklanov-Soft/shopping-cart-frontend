@@ -1,18 +1,16 @@
 import { ActionIcon, Button, Group } from '@mantine/core';
+import { useAuthState } from 'context/auth-state';
 import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 
-function LogoutButton() {
+export function LogoutButton() {
+  const { setLoggedIn } = useAuthState();
   const [confirmRequired, setConfirmRequired] = useState(false);
   function confirmNotRequired() {
     return setConfirmRequired(false);
   }
   if (!confirmRequired) {
-    return (
-      <Button onClick={() => setConfirmRequired(true)} uppercase>
-        Logout
-      </Button>
-    );
+    return <Button onClick={() => setConfirmRequired(true)}>Logout</Button>;
   }
   return (
     <Group noWrap spacing={0}>
@@ -20,7 +18,11 @@ function LogoutButton() {
         uppercase
         color="red"
         sx={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
-        onClick={() => logout().then(confirmNotRequired)}
+        onClick={() =>
+          logout()
+            .then(confirmNotRequired)
+            .then(() => setLoggedIn?.(false))
+        }
       >
         Confirm
       </Button>
@@ -44,8 +46,6 @@ function LogoutButton() {
   );
 }
 
-export default LogoutButton;
-
 function logout() {
-  return fetch('/api/logout', { method: 'post' });
+  return fetch('/api/v1/auth/logout', { method: 'POST' });
 }
