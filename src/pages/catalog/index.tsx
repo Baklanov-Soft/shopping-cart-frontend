@@ -2,7 +2,7 @@ import { ItemCard } from '@components/catalog/ItemCard';
 import { SimpleGrid, Title } from '@mantine/core';
 import Head from 'next/head';
 import useSWR from 'swr';
-import type { ListItem } from 'types/catalog';
+import { ListItem } from 'types/catalog';
 
 interface CatalogPageProps {
   items: ListItem[];
@@ -42,22 +42,13 @@ function CatalogPage({ items }: CatalogPageProps) {
 export default CatalogPage;
 
 export async function getServerSideProps() {
-  const res = await fetch(process.env.API_URL + '/api/v1/items', {
-    headers: {
-      Accept: 'application/json'
-    }
-  });
+  const res = await fetch(process.env.API_URL + '/api/v1/items');
   const items = await res.json();
-
   return {
     props: { items }
   };
 }
 
 function fetchItems(key: string): Promise<ListItem[]> {
-  return fetch(key, {
-    headers: {
-      Accept: 'application/json'
-    }
-  }).then((res) => res.json());
+  return fetch(key).then((res) => res.json());
 }

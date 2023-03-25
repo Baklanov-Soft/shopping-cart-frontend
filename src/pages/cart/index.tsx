@@ -2,19 +2,24 @@ import { CheckoutInfo } from '@components//cart/CheckoutInfo';
 import { CartItems } from '@components/cart/CartItems';
 import { EmptyCartNote } from '@components/cart/EmptyCartNote';
 import { Box, Flex, Title } from '@mantine/core';
+import { UpdateCartProvider, useUpdateCartForm } from 'context/update-cart';
 import Head from 'next/head';
-import useSWR from 'swr';
 import { Cart } from 'types/cart';
 import { withTokenSsr } from 'utils/with-token';
 
 interface CartPageProps {
   cart: Cart;
+  items: Record<string, number>[];
 }
 
-function CartPage({ cart }: CartPageProps) {
-  const { data } = useSWR('/api/v1/cart', fetchCart, {
-    fallbackData: cart,
-    revalidateOnMount: false
+function CartPage({ cart, items }: CartPageProps) {
+  const form = useUpdateCartForm({
+    initialValues: { items },
+    validate: {
+      items: {
+        item: (amount) => !amount && 'Can not be empty or zero.'
+      }
+    }
   });
   return (
     <>
@@ -24,20 +29,22 @@ function CartPage({ cart }: CartPageProps) {
 
       <Title>Cart</Title>
 
-      <Flex gap={16}>
-        <Box sx={{ flexBasis: '66%' }}>
-          {data.items.length > 0 ? (
-            <CartItems items={data.items} />
-          ) : (
-            <EmptyCartNote />
-          )}
-        </Box>
-        <Box sx={{ flexBasis: '33%' }}>
-          <Box component="aside" sx={{ position: 'sticky', top: 0 }}>
-            <CheckoutInfo totalPrice={data.total} />
+      <UpdateCartProvider form={form}>
+        <Flex gap={16}>
+          <Box sx={{ flexBasis: '66%' }}>
+            {cart.items.length > 0 ? (
+              <CartItems items={cart.items} />
+            ) : (
+              <EmptyCartNote />
+            )}
           </Box>
-        </Box>
-      </Flex>
+          <Box sx={{ flexBasis: '33%' }}>
+            <Box component="aside" sx={{ position: 'sticky', top: 0 }}>
+              <CheckoutInfo totalPrice={cart.total} />
+            </Box>
+          </Box>
+        </Flex>
+      </UpdateCartProvider>
     </>
   );
 }
@@ -46,20 +53,18 @@ export default CartPage;
 
 export const getServerSideProps = withTokenSsr(
   async function getServerSideProps({ req }) {
-    const res = await fetch(process.env.API_URL + '/api/v1/cart', {
-      headers: {
-        Authorization: `Bearer ${req.token}`,
-        Accept: 'application/json'
-      }
-    });
-    const cart = await res.json();
-    return { props: { cart } };
+    const cart = await getCart(req.token);
+    const items = cart.items.map((item) => ({
+      [item.item.uuid]: item.quantity
+    }));
+    return { props: { cart, items } };
   }
 );
 
-function fetchCart(key: string): Promise<Cart> {
-  return fetch(key, {
+async function getCart(token?: string): Promise<Cart> {
+  return fetch(process.env.API_URL + '/api/v1/cart', {
     headers: {
+      Authorization: `Bearer ${token}`,
       Accept: 'application/json'
     }
   }).then((r) => r.json());
