@@ -5,20 +5,24 @@ import {
   Container,
   MantineProvider
 } from '@mantine/core';
-import { parse } from 'cookie';
+import { AuthStateProvider } from 'context/auth-state';
 import useColorSchemeToggle from 'hooks/use-color-scheme-toggle';
-import type { AppContext, AppInitialProps, AppProps } from 'next/app';
+import { IncomingMessage } from 'http';
+import type { NextPageContext } from 'next';
+import type { AppContext, AppProps } from 'next/app';
 import NextApp from 'next/app';
 import Head from 'next/head';
 
 type AppOwnProps = {
   colorScheme: ColorScheme;
+  loggedIn: boolean;
 };
 
 function App({
   Component,
   pageProps,
-  colorScheme: cs
+  colorScheme: cs,
+  loggedIn
 }: AppProps & AppOwnProps) {
   const [colorScheme, toggleColorScheme] = useColorSchemeToggle(cs);
 
@@ -38,10 +42,12 @@ function App({
           withNormalizeCSS
           theme={{ colorScheme }}
         >
-          <Header />
-          <Container size="lg" px={8}>
-            <Component {...pageProps} />
-          </Container>
+          <AuthStateProvider loggedIn={loggedIn}>
+            <Header />
+            <Container size="lg" px={8}>
+              <Component {...pageProps} />
+            </Container>
+          </AuthStateProvider>
         </MantineProvider>
       </ColorSchemeProvider>
     </>
@@ -49,19 +55,27 @@ function App({
 }
 
 App.getInitialProps = async function getInitialProps(
-  appContext: AppContext
-): Promise<AppOwnProps & AppInitialProps> {
+  appContext: AppContext & {
+    ctx: NextPageContext & { req: IncomingMessage & { cookies: AppCookies } };
+  }
+) {
   const appInitialProps = await NextApp.getInitialProps(appContext);
 
-  //todo: use cookies from req
-  if (appContext.ctx.req?.headers.cookie) {
-    const cookie = parse(appContext.ctx.req.headers.cookie);
-    const colorScheme =
-      (cookie['COLOR_SCHEME'] as ColorScheme | undefined) ?? 'light';
-    return { ...appInitialProps, colorScheme };
+  if (appContext.ctx.req?.cookies.COLOR_SCHEME) {
+    const colorScheme = appContext.ctx.req?.cookies.COLOR_SCHEME ?? 'light';
+    Object.assign(appInitialProps, { colorScheme });
+  }
+  if (appContext.ctx.req?.cookies.ACCESS_TOKEN) {
+    const loggedIn = Boolean(appContext.ctx.req?.cookies.ACCESS_TOKEN);
+    Object.assign(appInitialProps, { loggedIn });
   }
 
-  return { ...appInitialProps, colorScheme: 'light' };
+  return appInitialProps;
 };
 
 export default App;
+
+interface AppCookies {
+  COLOR_SCHEME?: ColorScheme;
+  ACCESS_TOKEN?: string;
+}
