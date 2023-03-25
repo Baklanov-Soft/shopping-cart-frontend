@@ -1,5 +1,6 @@
 import { Button, PasswordInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useAuthState } from 'context/auth-state';
 
 interface PasswordFormValues {
   password: string;
@@ -11,6 +12,7 @@ interface PasswordFormProps {
 }
 
 function PasswordForm({ onSuccess, username }: PasswordFormProps) {
+  const { setLoggedIn } = useAuthState();
   const form = useForm<PasswordFormValues>({
     initialValues: { password: '' },
     validate: {
@@ -20,7 +22,9 @@ function PasswordForm({ onSuccess, username }: PasswordFormProps) {
   return (
     <form
       onSubmit={form.onSubmit((values) =>
-        login(username, values.password).then(onSuccess)
+        login(username, values.password)
+          .then(onSuccess)
+          .then(() => setLoggedIn?.(true))
       )}
     >
       <PasswordInput

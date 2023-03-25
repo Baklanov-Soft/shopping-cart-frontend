@@ -8,14 +8,17 @@ import {
   TextInput,
   ThemeIcon
 } from '@mantine/core';
+import { useAuthState } from 'context/auth-state';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BsBoxSeam, BsCart3 } from 'react-icons/bs';
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { Logo } from './Logo';
+import { LogoutButton } from './LogoutButton';
 import { NavigationDrawer } from './NavigationDrawer';
 
 export function Header() {
+  const { loggedIn } = useAuthState();
   const router = useRouter();
   return (
     <MantineHeader height={60} px="1rem">
@@ -51,25 +54,31 @@ export function Header() {
               </ThemeIcon>
             </ActionIcon>
 
-            <Button
-              component={Link}
-              href={{
-                pathname: '/login',
-                query: { callback: router.asPath }
-              }}
-            >
-              Log in
-            </Button>
-            <Button
-              variant="outline"
-              component={Link}
-              href={{
-                pathname: '/signup',
-                query: { callback: router.asPath }
-              }}
-            >
-              Sign up
-            </Button>
+            {loggedIn ? (
+              <LogoutButton />
+            ) : (
+              <>
+                <Button
+                  component={Link}
+                  href={{
+                    pathname: '/login',
+                    query: { callback: router.asPath }
+                  }}
+                >
+                  Log in
+                </Button>
+                <Button
+                  variant="outline"
+                  component={Link}
+                  href={{
+                    pathname: '/signup',
+                    query: { callback: router.asPath }
+                  }}
+                >
+                  Sign up
+                </Button>
+              </>
+            )}
           </Group>
         </HiddenMobile>
 
