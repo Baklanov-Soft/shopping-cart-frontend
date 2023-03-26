@@ -8,6 +8,7 @@
 node_modules
 .dockerignore
 .editorconfig
+.env*
 .eslintignore
 .gitattributes
 .gitignore
