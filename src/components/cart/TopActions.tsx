@@ -1,7 +1,8 @@
 import { Button, Checkbox, Flex } from '@mantine/core';
-import { CartItem } from 'types/cart';
 import { toggleAll, useSelection } from 'context/selection';
 import { IoMdClose } from 'react-icons/io';
+import useSWRMutation from 'swr/mutation';
+import { CartItem } from 'types/cart';
 
 interface TopActionsProps {
   items: CartItem[];
@@ -9,6 +10,7 @@ interface TopActionsProps {
 
 export function TopActions({ items }: TopActionsProps) {
   const { state, dispatch } = useSelection();
+  const { trigger } = useSWRMutation('/api/v1/cart', deleteItemsBulk);
 
   return (
     <Flex align="center" gap={8}>
@@ -23,9 +25,26 @@ export function TopActions({ items }: TopActionsProps) {
         compact
         color="red"
         leftIcon={<IoMdClose size={18} />}
+        onClick={() => {
+          const newItems = items
+            .filter((item) => !state.includes(item.item.uuid))
+            .reduce(
+              (acc, item) => ({ ...acc, [item.item.uuid]: item.quantity }),
+              {}
+            );
+
+          return trigger(newItems);
+        }}
       >
         Delete selected
       </Button>
     </Flex>
   );
+}
+
+async function deleteItemsBulk(
+  url: string,
+  { arg: items }: { arg: Record<string, number> }
+) {
+  await fetch(url, { method: 'PUT', body: JSON.stringify({ items }) });
 }

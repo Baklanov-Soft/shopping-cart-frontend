@@ -10,18 +10,23 @@ import { withTokenSsr } from 'utils/with-token';
 
 interface CartPageProps {
   cart: Cart;
-  items: Record<string, number>[];
 }
 
 function validator(amount: number) {
-  return !amount ? 'Can not be empty or zero.' : null;
+  if (typeof amount === 'string' && amount === '') {
+    return 'Can not be empty.';
+  }
+  return amount === 0 ? 'Can not be zero.' : null;
 }
 
-function CartPage({ cart, items }: CartPageProps) {
+function CartPage({ cart }: CartPageProps) {
   const { data } = useSWR('/api/v1/cart', getCartClient, {
     fallbackData: cart,
     revalidateOnMount: false
   });
+  const items = data.items.map((item) => ({
+    [item.item.uuid]: item.quantity
+  }));
   const form = useUpdateCartForm({
     initialValues: { items },
     validate: {
@@ -70,10 +75,7 @@ export default CartPage;
 export const getServerSideProps = withTokenSsr(
   async function getServerSideProps({ req }) {
     const cart = await getCart(req.token);
-    const items = cart.items.map((item) => ({
-      [item.item.uuid]: item.quantity
-    }));
-    return { props: { cart, items } };
+    return { props: { cart } };
   }
 );
 
@@ -86,7 +88,7 @@ async function getCart(token?: string): Promise<Cart> {
   }).then((r) => r.json());
 }
 
-async function getCartClient(key: string): Promise<Cart> {
+export async function getCartClient(key: string): Promise<Cart> {
   return fetch(key, {
     headers: {
       Accept: 'application/json'
