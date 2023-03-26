@@ -41,8 +41,7 @@ export function NavigationDrawer({ className }: NavigationDrawerProps) {
         }
         padding="md"
         position="right"
-        overlayOpacity={0.55}
-        overlayBlur={3}
+        overlayProps={{ opacity: 0.55, blur: 3 }}
       >
         <ScrollArea mx="-md" sx={{ height: 'calc(100vh - 60px)' }}>
           <Divider my="sm" />
