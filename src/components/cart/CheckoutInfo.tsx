@@ -1,4 +1,5 @@
 import { Box, Button, Divider, Flex, Text } from '@mantine/core';
+import { useUpdateCartContext } from 'context/update-cart';
 import type { Money } from 'types/catalog';
 import { moneyToString } from 'utils/money-to-string';
 
@@ -10,7 +11,9 @@ export function CheckoutInfo({ totalPrice }: CheckoutInfoProps) {
   return (
     <div>
       <Box p={8}>
-        <Button fullWidth>Checkout</Button>
+        <Button fullWidth type="submit">
+          Checkout
+        </Button>
       </Box>
       <Divider />
       <Flex justify="space-between" p={8}>

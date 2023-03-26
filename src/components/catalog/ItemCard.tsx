@@ -1,7 +1,8 @@
-import { Anchor, Box, Button, Card, Text } from '@mantine/core';
+import { Anchor, Box, Card, Text } from '@mantine/core';
 import Link from 'next/link';
 import type { ListItem } from 'types/catalog';
 import { moneyToString } from 'utils/money-to-string';
+import { AddToCartButton } from './AddToCartButton';
 
 interface ItemCardProps {
   item: ListItem;
@@ -20,7 +21,11 @@ export function ItemCard({ item: { name, price, uuid } }: ItemCardProps) {
         justifyContent: 'space-between'
       }}
     >
-      <Anchor component={Link} href={{ pathname: uuid }} size="md">
+      <Anchor
+        component={Link}
+        href={{ pathname: `/catalog/${uuid}` }}
+        size="md"
+      >
         {name}
       </Anchor>
       <Box
@@ -34,7 +39,7 @@ export function ItemCard({ item: { name, price, uuid } }: ItemCardProps) {
         <Text weight="bold" size="xl" component="span">
           {moneyToString(price)}
         </Text>
-        <Button size="xs">Add to cart</Button>
+        <AddToCartButton uuid={uuid} />
       </Box>
     </Card>
   );
