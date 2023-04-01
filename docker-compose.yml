@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:15.2-alpine3.17
+    container_name: db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: shopping-cart
+      POSTGRES_USER: shopping-cart
+      POSTGRES_PASSWORD: P@ssw0rd
+
+  redis:
+    image: redis:6.2.11-alpine3.17
+    container_name: redis
+    ports:
+      - 6379:6379
+
+  shopping-cart-backend:
+    image: ghcr.io/baklanov-soft/shopping-cart-backend:master
+    container_name: shopping-card-backend
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_DB: shopping-cart
+      DATABASE_USER: shopping-cart
+      DATABASE_PASSWORD: P@ssw0rd
+      DATABASE_MIGRATE: true
+      ADMIN_NAME: admin
+      ADMIN_PASSWORD: admin
+
+  shopping-cart-frontend:
+    image: ghcr.io/baklanov-soft/shopping-cart-frontend:master
+    build: .
+    container_name: shopping-card-frontend
+    ports:
+      - 3000:3000
+    environment:
+      API_URL: http://shopping-cart-backend:8080
